@@ -1,15 +1,16 @@
 # PharmaFEFO — Intelligent Pharmacy Inventory & Dispensing Engine
 
-PharmaFEFO is a production-grade pharmacy inventory management system built on strict **First-Expiry-First-Out (FEFO)** principles. It guarantees that healthcare providers always dispense stock with the nearest valid expiration date first, isolates expired lots from sellable figures, and prevents expired inventory from reaching consumers.
+PharmaFEFO is a production-grade pharmacy inventory management system built on strict First-Expiry-First-Out (FEFO) principles. It guarantees that healthcare providers always dispense stock with the nearest valid expiration date first, isolates expired lots from sellable figures, and prevents expired inventory from reaching consumers.
 
 ---
 
 ## 1. Product Landing Overview
 
-* **Product Value:** Automated FEFO allocation that eliminates human error during batch picking and cuts inventory write-offs.
-* **Target Audience:** Independent retail chemists, outpatient hospital pharmacies, and regional medical distribution hubs.
-* **Core Value Metric:** Zero expired units dispensed, guaranteed through query-level date bounds and database transactions.
-* **Three Immediate Roadmap Features:**
+- **Product Value:** Automated FEFO allocation that eliminates human error during batch picking and cuts inventory write-offs.
+- **Target Audience:** Independent retail chemists, outpatient hospital pharmacies, and regional medical distribution hubs.
+- **Core Value Metric:** Zero expired units dispensed, guaranteed through query-level date bounds and database transactions.
+- **Interactive Time-Travel Simulation:** Built-in UI controls to fast-forward time (+15d, +45d) and observe dynamic badge degradation and quarantine status in real time.
+- **Three Immediate Roadmap Features:**
   1. GS1 DataMatrix 2D Barcode scanner integration for automated intake and dispensing workflows.
   2. Supplier automated return authorizations for batches within 15 days of shelf expiration.
   3. Multi-branch automated load-balancing and inter-depot inventory transfers.
@@ -18,20 +19,21 @@ PharmaFEFO is a production-grade pharmacy inventory management system built on s
 
 ## 2. Technical Stack
 
-* **Framework:** Next.js 14 (App Router, TypeScript, React Server/Client Components)
-* **Persistence & ORM:** SQLite via Prisma ORM (Atomic transactions, strict foreign keys)
-* **Styling:** Tailwind CSS (Responsive operational dashboard and public landing page)
-* **Authentication:** Session and credentials-based authentication with `bcryptjs`
+- **Framework:** Next.js 14 (App Router, TypeScript, React Server/Client Components)
+- **Persistence & ORM:** SQLite via Prisma ORM (Atomic transactions, strict foreign keys)
+- **Styling:** Tailwind CSS (Responsive operational dashboard, live audit trail, and urgency badges)
+- **Authentication:** Session and credentials-based authentication with bcryptjs
 
 ---
 
 ## 3. Getting Started & Setup
 
 ### Prerequisites
-* Node.js >= 18.0.0
-* npm >= 9.0.0
+- Node.js >= 18.0.0
+- npm >= 9.0.0
 
 ### Installation & Initialization
+
 ```bash
 # Clone the repository and navigate into the workspace
 git clone <repository_url>
@@ -53,7 +55,13 @@ Email: admin@pharmacy.com
 
 Password: admin123
 
-4. REST API Specification
+4. Automated Verification & Smoke Testing
+Run the included automated verification script to validate FEFO dispensing, in-date calculations, search, and expiry alerts:
+
+Bash
+# Run the test suite against a running local server
+./test-fefo.sh
+5. REST API Specification
 Authentication
 POST /api/auth
 
@@ -64,9 +72,9 @@ Response: { success: true, user: { id, email, name } }
 Inventory Management
 GET /api/medicines
 
-Query Parameters: search (string), sort (name|category), order (asc|desc), page (number), limit (number)
+Query Parameters: search (string), sort (name | category), order (asc | desc), page (number), limit (number)
 
-Behavior: Computes active, sellable stock on the fly by excluding lots where expiryDate <= NOW() or status = 'QUARANTINED'.
+Behavior: Computes active, sellable stock dynamically by excluding lots where expiryDate <= NOW() or status = 'QUARANTINED'.
 
 POST /api/medicines
 

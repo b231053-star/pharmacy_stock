@@ -63,3 +63,14 @@
 > **User:** "tell me what to write in all three files and write it using terminal make sure it is written in profesinal manner"
 >
 > **Assistant:** Generated this professional documentation package (`README.md`, `REASONING.md`, and `AI_LOGS.md`) via terminal commands to complete submission requirements.
+
+Prompt 8: Feature Enhancements & Automated Smoke Testing
+
+User: Requested advice on high-value improvements with remaining competition time. Selected visual shelf-life urgency badges, time-travel simulation controls, a live dispense audit log, and an automated smoke test script.
+Assistant: Provided:
+
+test-fefo.sh: An automated curl-based smoke test suite validating endpoints, dynamic in-date stock calculations, and FEFO atomic dispense routines.
+
+Enhanced app/page.tsx: Implemented tiered color badges (<15d critical pulse, <30d warning, expired strikethrough), an interactive time-travel simulation bar triggering POST /clock, and a real-time FEFO dispense activity log.
+
+Verification guidance: Tested fast-forward clock transitions and multi-batch deduction before synchronizing and committing.
